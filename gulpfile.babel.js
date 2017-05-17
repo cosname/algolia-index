@@ -11,9 +11,9 @@ import {
 import algoliasearch from 'algoliasearch';
 import * as dotenv from 'dotenv';
 import matter from 'gray-matter';
+import "isomorphic-fetch";
 
 
-var uglify = require('fetch');
 let commits_url = 'https://api.github.com/repos/cosname/cosx.org/commits?since=' +
   curday +  'T00:00:00Z';
 
