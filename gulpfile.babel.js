@@ -99,6 +99,7 @@ gulp.task('index', () => {
             fetch(commits_url )
               .then(resp=>resp.json())
               .then(commits=>{
+                console.log(commits)
                 if (commits.length > 0) {
                   db.saveObjects(index, (err, content) => {
                       if (err) {
