@@ -69,7 +69,7 @@ gulp.task('index', () => {
                 lang: 'yaml',
                 delims: ['---', '---']
             });
-            console.log(datum)
+            // console.log(datum)
             if (datum.data.draft !== true) {
                 index.push({
                     content: datum.content,
