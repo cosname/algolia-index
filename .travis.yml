@@ -21,6 +21,7 @@ script:
   - cat gulpfile.babel.js >> gulpfile.babel.js2
   - rm gulpfile.babel.js
   - mv gulpfile.babel.js2 gulpfile.babel.js
+  - cat gulpfile.babel.js
   - gulp index
 
 after_script:
