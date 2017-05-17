@@ -1,0 +1,22 @@
+language: node_js
+
+node_js: 6.0.0
+
+install:
+  - npm install gulp-cli -g
+  - npm install babel-cli -g
+  - npm install
+
+before_script:
+  - git clone https://github.com/cosname/cosx.org.git docs
+  - cd docs
+  ##- git checkout gh-pages
+
+script:
+  - cd ../
+  - echo "ALGOLIA_API_SECRET=${AL_VALUE}" >> .env
+  - curday=`date +%Y-%m-%d`
+  - echo "var curday=${curday}" >> gulpfile.babel.js
+  - gulp index
+
+after_script:
