@@ -14,9 +14,9 @@ import matter from 'gray-matter';
 import "isomorphic-fetch";
 
 
-let commits_url = 'https://api.github.com/repos/cosname/cosx.org/commits?since=' +
+var commits_url = 'https://api.github.com/repos/cosname/cosx.org/commits?since=' +
   curday +  'T00:00:00Z';
-
+console.log(commits_url)
 
 dotenv.load();
 
