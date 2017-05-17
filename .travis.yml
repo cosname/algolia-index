@@ -15,8 +15,8 @@ before_script:
 script:
   - cd ../
   - echo "ALGOLIA_API_SECRET=${AL_VALUE}" >> .env
-  # - curday=`date +%Y-%m-%d`
-  - curday='2017-05-01'
+  - curday=`date +%Y-%m-%d`
+  # - curday='2017-05-01'
   - echo "var curday='${curday}'" >> gulpfile.babel.js2
   - cat gulpfile.babel.js >> gulpfile.babel.js2
   - rm gulpfile.babel.js
