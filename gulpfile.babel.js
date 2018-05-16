@@ -35,17 +35,24 @@ function getAliases(datum, file) {
     return datum.data.slug;
 }
 
-function capitalize(value) {
+function capitalize(value, dat) {
+     // console.log(value)
+     // console.log(dat)
      var baseurl = "https://cosx.org/"
      if(value.length < 13){
        return baseurl + "" + value.slice(0,value.length-3)
      }else if(value.length == 14){
        return baseurl + "chinar/" + value.slice(0,value.length-3)
-     }else{
+     }else if(dat.date === undefined){
        return baseurl +
           value.slice(0, 4) + "/" +
           value.slice(5, 7) + "/" +
           value.slice(11, value.length-3)
+     }else{
+       return baseurl +
+          dat.date.toString().slice(0, 4) + "/" +
+          dat.date.toString().slice(5, 7) + "/" +
+          dat.slug
      }
    }
 // function getAliases2(datum, file) {
@@ -78,7 +85,7 @@ gulp.task('index', () => {
                     autor: datum.data.author,
                     date: datum.data.date,
                     description: datum.data.description,
-                    url: capitalize(path.basename(file.path)),
+                    url: capitalize(path.basename(file.path), datum.data),
                     objectID: path.basename(file.path)
                 });
             }
