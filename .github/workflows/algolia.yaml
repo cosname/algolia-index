@@ -1,0 +1,44 @@
+name: Rebuild Algolia Index
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 6.0.0
+
+    - name: Install global packages
+      run: |
+        npm install gulp-cli -g
+        npm install babel-cli -g
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Clone repository
+      run: git clone https://github.com/cosname/cosx.org.git docs
+
+    - name: Prepare environment
+      run: |
+        echo "ALGOLIA_API_SECRET=${{ secrets.AL_VALUE }}" >> .env
+        curday=$(date +%Y-%m-%d)
+        echo "var curday='${curday}'" >> gulpfile.babel.js2
+        cat gulpfile.babel.js >> gulpfile.babel.js2
+        rm gulpfile.babel.js
+        mv gulpfile.babel.js2 gulpfile.babel.js
+
+    - name: Build and test
+      run: |
+        gulp index
